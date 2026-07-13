@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anand & Reshma | Wedding Reception</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --burgundy: #4a0404;
+            --deep-wine: #220101;
+            --gold: #c5a059;
+            --gold-glow: rgba(197, 160, 89, 0.4);
+            --ivory: #fdfaf6;
+            --black: #050505;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0; padding: 0;
+        }
+
+        body, html {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--ivory);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, .names, .connector {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* --- PAGE 1: GRAND STAGE INVITATION --- */
+        #stage-section {
+            min-height: 100vh;
+            position: relative;
+            background: radial-gradient(circle at center, var(--deep-wine) 0%, var(--black) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2.5rem 1rem 1.5rem 1rem;
+            overflow: hidden;
+        }
+
+        /* Visible Moving Spotlights */
+        .spotlight-cone {
+            position: absolute;
+            top: 0;
+            width: 450px;
+            height: 100%;
+            background: conic-gradient(from 180deg at top, rgba(255, 235, 180, 0.18) 0deg, rgba(197, 160, 89, 0.04) 20deg, transparent 45deg);
+            filter: blur(8px);
+            pointer-events: none;
+            z-index: 2;
+            transform-origin: top center;
+        }
+
+        .cone-left {
+            left: -50px;
+            animation: beamSweepLeft 6s ease-in-out infinite alternate;
+        }
+
+        .cone-right {
+            right: -50px;
+            animation: beamSweepRight 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes beamSweepLeft {
+            0% { transform: rotate(15deg); opacity: 0.7; }
+            100% { transform: rotate(35deg); opacity: 1; }
+        }
+
+        @keyframes beamSweepRight {
+            0% { transform: rotate(-15deg); opacity: 1; }
+            100% { transform: rotate(-35deg); opacity: 0.7; }
+        }
+
+        /* Backdrop Fairy String Lights */
+        .fairy-lights {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 300px;
+            background-image: radial-gradient(circle, var(--gold) 1px, transparent 1.5px);
+            background-size: 30px 30px;
+            opacity: 0.35;
+            mask-image: linear-gradient(to bottom, black 50%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent);
+        }
+
+        /* Invitation Typography text rules */
+        .invitation-text {
+            position: relative;
+            z-index: 4;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .parents-hosting {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d1b48c;
+            line-height: 1.8;
+        }
+
+        .groom-name, .bride-name {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--ivory);
+            letter-spacing: 2px;
+            margin: 0.5rem 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .connector {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        .event-title {
+            font-size: 2.6rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px var(--gold-glow);
+            margin-bottom: 0.2rem;
+        }
+
+        .event-details {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+            text-transform: uppercase;
+        }
+
+        /* --- STAGE CENTERPIECE --- */
+        .stage-center {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            z-index: 3;
+            margin: 1rem 0;
+        }
+
+        /* Animated Music Speakers */
+        .speaker {
+            position: absolute;
+            bottom: 10px;
+            width: 45px;
+            height: 90px;
+            background: #111;
+            border: 1px solid rgba(197,160,89,0.3);
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            padding: 6px 0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.7);
+        }
+        .speaker-left { left: 40px; }
+        .speaker-right { right: 40px; }
+
+        .speaker-cone-top, .speaker-cone-bottom {
+            width: 28px;
+            height: 28px;
+            background: #1a1a1a;
+            border: 2px solid #222;
+            border-radius: 50%;
+            position: relative;
+        }
+        .speaker-cone-bottom {
+            width: 34px;
+            height: 34px;
+            animation: bassThump 0.6s linear infinite alternate;
+        }
+
+        /* Soundwave animation rings */
+        .soundwave {
+            position: absolute;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            opacity: 0;
+            animation: waveRipple 1.2s linear infinite;
+            pointer-events: none;
+        }
+        .speaker-left .soundwave { left: 50%; top: 50%; }
+        .speaker-right .soundwave { right: 50%; top: 50%; }
+
+        @keyframes bassThump {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.12); border-color: var(--gold); }
+        }
+
+        @keyframes waveRipple {
+            0% { width: 40px; height: 40px; opacity: 0.4; transform: translate(-50%, -50%) scale(0.8); }
+            100% { width: 140px; height: 140px; opacity: 0; transform: translate(-50%, -50%) scale(1.8); }
+        }
+
+        /* Dynamic Detail-Rich Couple Art Container */
+        .couple-art-container {
+            width: 220px;
+            height: 100%;
+            animation: elegantSway 4s ease-in-out infinite alternate;
+            transform-origin: bottom center;
+        }
+
+        @keyframes elegantSway {
+            0% { transform: rotate(-1deg); }
+            100% { transform: rotate(1deg); }
+        }
+
+        /* --- PAGE 2: VENUE LAYOUT --- */
+        #venue-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--black) 0%, var(--burgundy) 50%, var(--black) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 1rem;
+            position: relative;
+        }
+
+        .venue-card {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--gold);
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2;
+        }
+
+        .venue-title {
+            color: var(--gold);
+            font-size: 2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1.2rem;
+        }
+
+        .venue-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 0.4rem;
+        }
+
+        .venue-location {
+            font-size: 1rem;
+            color: #d1b48c;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .btn-directions {
+            display: inline-block;
+            background: transparent;
+            color: var(--ivory);
+            border: 1px solid var(--gold);
+            padding: 0.9rem 2rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-directions:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 15px var(--gold-glow);
+        }
+
+        .scroll-cue {
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            margin-top: auto;
+        }
+        .scroll-cue p { font-size: 0.8rem; letter-spacing: 2px; color: #d1b48c; margin-bottom: 0.2rem; }
+        .down-arrow { font-size: 1.2rem; color: var(--gold); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
+
+        @media (max-width: 600px) {
+            .groom-name, .bride-name { font-size: 2.2rem; }
+            .event-title { font-size: 2rem; }
+            .speaker { display: none; } /* Hide heavy canvas props on small mobile screens */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: STAGE INVITATION WITH AUDIO/VISUAL DETAILS -->
+    <section id="stage-section">
+        <div class="spotlight-cone cone-left"></div>
+        <div class="spotlight-cone cone-right"></div>
+        <div class="fairy-lights"></div>
+
+        <div class="invitation-text">
+            <p class="parents-hosting">
+                Together with their families,<br>
+                Mrs Swapna Sudheer & Sudheer Kumar<br>
+                invite you to celebrate the wedding reception of their son
+            </p>
+            <h2 class="groom-name">Anand</h2>
+            <div class="connector">and</div>
+            <p class="parents-hosting" style="margin-top:0.6rem; margin-bottom:0.6rem;">
+                Sreedevi Ullanat & Suresh Srambickal<br>
+                invite you to celebrate the wedding reception of their daughter
+            </p>
+            <h2 class="bride-name">Reshma</h2>
+        </div>
+
+        <!-- Theatrical Stage Component Floor Area -->
+        <div class="stage-center">
+            <!-- Left Sound Stack -->
+            <div class="speaker speaker-left">
+                <div class="speaker-cone-top"></div>
+                <div class="speaker-cone-bottom"><div class="soundwave"></div></div>
+            </div>
+
+            <!-- Highly Detailed Groom & Bride Vector Illustrative Art Overlay -->
+            <div class="couple-art-container">
+                <svg viewBox="0 0 200 260" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Stage Shadow Floor Base -->
+                    <ellipse cx="100" cy="245" rx="55" ry="8" fill="rgba(0,0,0,0.5)" filter="blur(3px)" />
+                    
+                    <!-- GROOM (Sharp Detailed Tuxedo Suit) -->
+                    <g id="groom-detailed" transform="translate(-12, 0)">
+                        <!-- Suit Pants / Footing Base -->
+                        <path d="M75,150 L105,150 L102,245 L78,245 Z" fill="#0d0d0d"/>
+                        <line x1="89" y1="165" x2="89" y2="245" stroke="#161616" stroke-width="1.5"/>
+                        <!-- Tux Coat Body Shape -->
+                        <path d="M68,145 L112,145 L110,195 L72,195 Z" fill="#141414"/>
+                        <!-- Silk Satin Structural Lapels -->
+                        <path d="M76,145 L88,175 L88,145 Z" fill="#020202" stroke="#c5a059" stroke-width="0.5"/>
+                        <path d="M104,145 L92,175 L92,145 Z" fill="#020202" stroke="#c5a059" stroke-width="0.5"/>
+                        <!-- Pleated White Dress Shirt & Velvet Burgundy Bowtie -->
+                        <path d="M88,145 L92,145 L90,162 Z" fill="#ffffff"/>
+                        <path d="M86,147 L94,151 L90,154 Z" fill="#500505"/>
+                        <path d="M94,147 L86,151 L90,154 Z" fill="#500505"/>
+                        <!-- Groom's Arms -->
+                        <path d="M68,145 Q60,175 66,205" fill="none" stroke="#141414" stroke-width="10" stroke-linecap="round"/>
+                        <!-- Detailed Head Profile -->
+                        <circle cx="90" cy="115" r="18" fill="#fadcb9"/>
+                        <!-- Styled Hair and Trimmed Beard Wrap -->
+                        <path d="M72,112 Q90,92 108,112 Q105,100 90,100 Q75,100 72,112" fill="#261f1d"/>
+                        <path d="M76,120 Q90,132 104,120 Q100,128 90,128 Q80,128 76,120" fill="#261f1d"/>
+                    </g>
+
+                    <!-- BRIDE (Cascading Crimson/Red Elegant Gown Art) -->
+                    <g id="bride-detailed" transform="translate(15, 5)">
+                        <!-- Flowing Detailed Crimson Gown Panel -->
+                        <path d="M92,150 Q115,145 138,150 L175,240 L55,240 Z" fill="#800c0c"/>
+                        <!-- Premium Dress pleats shading / Tiered Highlights -->
+                        <path d="M88,152 Q100,190 70,240" fill="none" stroke="#520404" stroke-width="2.5"/>
+                        <path d="M115,150 Q115,185 115,240" fill="none" stroke="#520404" stroke-width="2"/>
+                        <path d="M132,152 Q125,190 155,240" fill="none" stroke="#520404" stroke-width="2.5"/>
+                        <!-- Elegant Gold Traditional Kerala/Western Fusion Neck Trimming -->
+                        <path d="M93,150 Q115,145 137,150" fill="none" stroke="#c5a059" stroke-width="3"/>
+                        <!-- Bride Arms -->
+                        <path d="M88,150 Q78,175 90,195" fill="none" stroke="#fce3c8" stroke-width="7" stroke-linecap="round"/>
+                        <path d="M138,150 Q148,175 142,195" fill="none" stroke="#fce3c8" stroke-width="7" stroke-linecap="round"/>
+                        <!-- Head Graphic -->
+                        <circle cx="115" cy="122" r="16" fill="#fce3c8"/>
+                        <!-- Flowing Raven Hair Structure Contour -->
+                        <path d="M99,122 Q90,160 88,190 Q105,170 105,140" fill="#1a110e"/>
+                        <path d="M99,118 Q115,102 131,118 Q125,106 115,106 Q105,106 99,118" fill="#1a110e"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Right Sound Stack -->
+            <div class="speaker speaker-right">
+                <div class="speaker-cone-top"></div>
+                <div class="speaker-cone-bottom"><div class="soundwave" style="animation-delay: 0.4s;"></div></div>
+            </div>
+        </div>
+
+        <div class="invitation-text" style="margin-bottom: 1.5rem;">
+            <h1 class="event-title">Wedding Reception</h1>
+            <p class="event-details">19 August 2026 &bull; 6:00 PM onwards</p>
+        </div>
+
+        <a href="#venue-section" class="scroll-cue">
+            <p>Join us for an evening of love and celebration</p>
+            <div class="down-arrow">↓</div>
+        </a>
+    </section>
+
+    <!-- PAGE 2: REFINED VENUE SECTION WITH TARGETED MAP LINK -->
+    <section id="venue-section">
+        <div class="venue-card">
+            <h2 class="venue-title">Venue</h2>
+            <p class="venue-name">Uthram Regency Convention Centre</p>
+            <p class="venue-location">Thodupuzha, Kerala</p>
+            
+            <!-- Direct Google Maps link destination embedded -->
+            <a href="https://www.google.com/maps/place/Uthram+Regency+Convention,+Thodupuzha/@9.9064791,76.7207801,1010m/data=!3m1!1e3!4m15!1m8!3m7!1s0x3b07c3f37eb05ca5:0xdf246575e813ff58!2sUthram+Regency+Convention,+Thodupuzha!8m2!3d9.9064791!4d76.7229688!10e5!16s%2Fg%2F1tlbml63!3m5!1s0x3b07c3f37eb05ca5:0xdf246575e813ff58!8m2!3d9.9064791!4d76.7229688!16s%2Fg%2F1tlbml63?entry=ttu&g_ep=EgoyMDI2MDcwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="btn-directions">
+                Get Directions
+            </a>
+        </div>
+        <p class="closing-note">We would be honoured by your presence.</p>
+    </section>
+
+</body>
+</html>
